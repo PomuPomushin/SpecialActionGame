@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private float jumpPower = 1500;//ジャンプ力
     [SerializeField]
     private float moveSpeed = 300; //移動スピード
-
+    public int point;//これで、ポイントの変数ができた
     private Animator anim;//Animtorの機能を使うための変数
 
     private bool grounded;//地面についているかどうかを判定するための変数
@@ -70,6 +70,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground")//もし、触れたもののタグがGroundなら、
         {
             grounded = true;//grounndedをtrueにする
+        }
+        if (collision.gameObject.tag == "Coin")
+        {
+            Destroy(collision.gameObject);
         }
     }
     private void OnCollisionExit(Collision collision)//ものに離れた時の処理
