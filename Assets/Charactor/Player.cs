@@ -11,14 +11,16 @@ public class Player : MonoBehaviour
     private float jumpPower = 1500;//ジャンプ力
     [SerializeField]
     private float moveSpeed = 300; //移動スピード
-    public int point;//これで、ポイントの変数ができた
+    public static int point =0;//これで、ポイントの変数ができた
     private Animator anim;//Animtorの機能を使うための変数
+    public GameObject ClearText;//クリアの時に表示する文字
 
     private bool grounded;//地面についているかどうかを判定するための変数
     void Start()
     {
         rb = GetComponent<Rigidbody>();// rbにRigidbodyの値を代入する
         anim = GetComponent<Animator>();//animにAnimatorの値を代入する
+        ClearText.SetActive(false);//clearTextを隠す
     }
 
 
@@ -74,7 +76,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Coin")
         {
             Destroy(collision.gameObject);
-        }
+            ++point;
+            if (point == 3)
+            {
+                ClearText.SetActive(true);//clearTextを表示する
+            }
+            
+        } // もしポイントが三枚だったらクリアの文字を表示する
+
     }
     private void OnCollisionExit(Collision collision)//ものに離れた時の処理
     {
