@@ -17,11 +17,11 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)//オブジェクトに触れた時の処理
+    private void OnCollisionEnter(Collision collision)//オブジェクトに触れた時の処理
     {
         if (collision.gameObject.tag == "Enemy")//もしEnemyのタグがついてる敵に触れたら
         {
-            SceneManager.LoadScene("You are daed");//ゲームオーバーのシーンに変える
+            SceneManager.LoadScene("YouAreDead");//ゲームオーバーのシーンに変える
         }
     }
 }
